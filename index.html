@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Pribadi</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <div class="column">
+
+        <div class="widget" id="clock-widget">
+            <div id="clock">00:00:00</div>
+        </div>
+
+        <div class="widget">
+          <h2>Search</h2>
+          <form
+            action="https://www.google.com/search"
+            method="get"
+            target="_blank"
+            id="search-form"
+          >
+            <input type="text" name="q" placeholder="Search in Google..." />
+            <button type="submit">Cari</button>
+          </form>
+        </div>
+
+        <div class="widget">
+          <h2>To-Do List</h2>
+          <ul id="todo-list"></ul>
+          <div id="todo-form">
+            <input type="text" id="todo-input" placeholder="New Task..." />
+            <button id="add-todo-btn">Add</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="widget">
+          <h2>Berita Terkini (ANTARA News)</h2>
+          <div id="news-container">
+            <p>Memuat berita...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
