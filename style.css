@@ -75,45 +75,6 @@ body {
   border-radius: 0 4px 4px 0;
 }
 
-/* Gaya untuk To-Do List */
-#todo-list {
-  list-style: none;
-  padding: 0;
-  min-height: 100px;
-}
-
-#todo-list li {
-  padding: 8px;
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer;
-}
-
-#todo-list li.done {
-  text-decoration: line-through;
-  color: #999;
-}
-
-#todo-form {
-  display: flex;
-  margin-top: 10px;
-}
-
-#todo-input {
-  flex-grow: 1;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 4px 0 0 4px;
-}
-
-#add-todo-btn {
-  padding: 10px 15px;
-  border: none;
-  background-color: #28a745;
-  color: white;
-  cursor: pointer;
-  border-radius: 0 4px 4px 0;
-}
-
 /* Gaya untuk Kontainer Berita */
 #news-container a {
   text-decoration: none;
@@ -121,70 +82,45 @@ body {
   display: block;
   padding: 8px 0;
   border-bottom: 1px solid #f0f0f0;
+  transition: all 0.2s ease-in-out;
 }
 
 #news-container a:hover {
-  background-color: #f9f9f9;
+  text-decoration: underline; /* Garis bawah saat hover */
+  color: black; /* Warna teks tetap kontras */
+  font-size: large;
 }
 
 /* Buat setiap item berita menjadi satu blok */
 .news-item {
-    padding: 5px;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background-color 0.2s ease;
+  padding: 5px;
+  transition: background-color 0.2s ease;
+  border-radius: 10px;
 }
 
 /* Beri efek hover pada seluruh area item berita */
 .news-item:hover {
-    background-color: #f9f9f9;
-}
-
-.news-item a {
-    text-decoration: none;
-    color: #0056b3;
-    font-size: 1em;
+  background-color: #f9f9f9;
 }
 
 /* Buat pembungkus untuk judul dan tanggal */
 .title-wrapper {
-    display: flex; /* Aktifkan Flexbox */
-    justify-content: space-between; /* Posisikan item ke ujung kiri dan kanan */
-    align-items: center; /* Sejajarkan secara vertikal di tengah */
-    gap: 16px; /* Beri jarak antara judul dan tanggal */
+  display: flex; /* Aktifkan Flexbox */
+  justify-content: space-between; /* Posisikan item ke ujung kiri dan kanan */
+  align-items: center; /* Sejajarkan secara vertikal di tengah */
+  gap: 16px; /* Beri jarak antara judul dan tanggal */
 }
 
 /* Atur agar judul berita tidak terlalu lebar dan memakan semua tempat */
 .title-wrapper a {
-    flex-grow: 1; /* Biarkan judul memanjang mengisi sisa ruang */
-    min-width: 0; /* Mencegah judul mendorong elemen lain */
+  flex-grow: 1; /* Biarkan judul memanjang mengisi sisa ruang */
+  min-width: 0; /* Mencegah judul mendorong elemen lain */
 }
 
 /* Gaya untuk teks tanggal */
 .news-date {
-    font-size: 0.85em;
-    color: #6c757d; /* Warna abu-abu */
-    white-space: nowrap; /* Mencegah tanggal terpotong ke baris baru */
-    flex-shrink: 0; /* Mencegah tanggal menyusut */
-}
-
-/* Wadah untuk gambar, tersembunyi secara default */
-.image-container {
-    max-height: 0; /* Awalnya tingginya 0 */
-    overflow: hidden; /* Sembunyikan konten yang meluap */
-    transition: max-height 0.4s ease-out; /* Animasi slide-down */
-    margin-top: 0;
-}
-
-/* Kelas 'visible' untuk menampilkan wadah gambar */
-.image-container.visible {
-    max-height: 300px; /* Beri jarak dari judul saat muncul */
-    opacity: 1;
-    visibility: visible; /* Pastikan wadah terlihat */
-}
-
-/* Gaya untuk gambar di dalamnya */
-.image-container img {
-    width: 100%;
-    border-radius: 8px;
-    display: block;
+  font-size: 0.85em;
+  color: #6c757d; /* Warna abu-abu */
+  white-space: nowrap; /* Mencegah tanggal terpotong ke baris baru */
+  flex-shrink: 0; /* Mencegah tanggal menyusut */
 }

@@ -41,82 +41,75 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- FUNGSI AMBIL BERITA (RSS) ---
   function fetchNews() {
-    const newsContainer = document.getElementById('news-container');
+    const newsContainer = document.getElementById("news-container");
     if (!newsContainer) return;
 
-    const rssUrl = 'https://rss.app/feeds/uPDYRMG2X6IVXJd7.xml'; // Ganti dengan URL RSS Anda
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    const rssUrl = "https://rss.app/feeds/uPDYRMG2X6IVXJd7.xml"; // Ganti dengan URL RSS Anda
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(
+      rssUrl
+    )}`;
 
-    newsContainer.innerHTML = '<p>Memuat berita...</p>';
+    newsContainer.innerHTML = "<p>Memuat berita...</p>";
 
     fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'ok') {
-                newsContainer.innerHTML = ''; // Kosongkan kontainer
-                const articles = data.items.slice(0, 10);
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "ok") {
+          newsContainer.innerHTML = ""; // Kosongkan kontainer
+          const articles = data.items.slice(0, 10);
 
-                articles.forEach(article => {
-                    const newsItem = document.createElement('div');
-                    newsItem.className = 'news-item';
+          articles.forEach((article) => {
+            const newsItem = document.createElement("div");
+            newsItem.className = "news-item";
 
-                    // 1. Buat div pembungkus untuk judul dan tanggal
-                    const titleWrapper = document.createElement('div');
-                    titleWrapper.className = 'title-wrapper';
+            // 1. Buat div pembungkus untuk judul dan tanggal
+            const titleWrapper = document.createElement("div");
+            titleWrapper.className = "title-wrapper";
 
-                    // 2. Buat link judul seperti biasa
-                    const articleLink = document.createElement('a');
-                    articleLink.href = article.link;
-                    articleLink.target = '_blank';
-                    articleLink.textContent = article.title;
+            // 2. Buat link judul seperti biasa
+            const articleLink = document.createElement("a");
+            articleLink.href = article.link;
+            articleLink.target = "_blank";
+            articleLink.textContent = article.title;
 
-                    // 3. BUAT ELEMEN TANGGAL
-                    const dateElement = document.createElement('span');
-                    dateElement.className = 'news-date';
-                    // Format tanggal agar lebih mudah dibaca (opsional)
-                    const pubDate = new Date(article.pubDate);
-                    dateElement.textContent = pubDate.toLocaleDateString('id-ID', {
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric'
-                    });
+            // 3. BUAT ELEMEN TANGGAL
+            const dateElement = document.createElement("span");
+            dateElement.className = "news-date";
+            // Format tanggal agar lebih mudah dibaca (opsional)
+            const pubDate = new Date(article.pubDate);
+            dateElement.textContent = pubDate.toLocaleDateString("id-ID", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            });
 
-                    // 4. Masukkan link judul dan elemen tanggal ke dalam pembungkusnya
-                    titleWrapper.appendChild(articleLink);
-                    titleWrapper.appendChild(dateElement);
+            // 4. Masukkan link judul dan elemen tanggal ke dalam pembungkusnya
+            titleWrapper.appendChild(articleLink);
+            titleWrapper.appendChild(dateElement);
 
-                    // ... (Kode untuk membuat imageContainer tetap sama persis)
-                    const imageContainer = document.createElement('div');
-                    imageContainer.className = 'image-container';
-                    const imageUrl = article.thumbnail;
-                    if (imageUrl) {
-                        const image = document.createElement('img');
-                        image.src = imageUrl;
-                        image.alt = "Preview Berita";
-                        imageContainer.appendChild(image);
-                    }
-
-                    // 5. Masukkan titleWrapper dan imageContainer ke dalam item berita utama
-                    newsItem.appendChild(titleWrapper);
-                    newsItem.appendChild(imageContainer);
-
-                    // ... (Event listener mouseover dan mouseout tetap sama persis)
-                    newsItem.addEventListener('mouseover', () => {
-                        imageContainer.classList.add('visible');
-                    });
-                    newsItem.addEventListener('mouseout', () => {
-                        imageContainer.classList.remove('visible');
-                    });
-                    
-                    newsContainer.appendChild(newsItem);
-                });
-            } else {
-                throw new Error(data.message);
+            // ... (Kode untuk membuat imageContainer tetap sama persis)
+            const imageContainer = document.createElement("div");
+            imageContainer.className = "image-container";
+            const imageUrl = article.thumbnail;
+            if (imageUrl) {
+              const image = document.createElement("img");
+              image.src = imageUrl;
+              image.alt = "Preview Berita";
+              imageContainer.appendChild(image);
             }
-        })
-        .catch(error => {
-            console.error('Error fetching news:', error);
-            newsContainer.innerHTML = `<p>Gagal memuat berita: ${error.message}</p>`;
-        });
-}
+
+            // 5. Masukkan titleWrapper dan imageContainer ke dalam item berita utama
+            newsItem.appendChild(titleWrapper);
+            newsItem.appendChild(imageContainer);
+            newsContainer.appendChild(newsItem);
+          });
+        } else {
+          throw new Error(data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching news:", error);
+        newsContainer.innerHTML = `<p>Gagal memuat berita: ${error.message}</p>`;
+      });
+  }
 });
